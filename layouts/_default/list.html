@@ -1,0 +1,30 @@
+{{ partial "header.html" . }}
+
+<section id=content>
+  <h1>{{ .Title }}</h1>
+  <p>{{ .Summary }}</p>
+  <ul class=posts_listing>
+    {{ range .Paginator.Pages }}
+      <li>
+        <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+        <div class=date>
+          {{if not .Date.IsZero }}
+            {{ .Date.Format "1 January 2006" }}
+          {{end}}
+        </div>
+        <!-- <div class=tags> -->
+        <!--   {{ with .Params.tags }} -->
+        <!--   <ul id="tags"> -->
+        <!--     {{ range . }} -->
+        <!--       <li> <a href="{{ "tags" | absURL }}{{ . | urlize }}">{{ . }}</a> </li> -->
+        <!--     {{ end }} -->
+        <!--   </ul> -->
+        <!--   {{ end }} -->
+        <!-- </div> -->
+      </li>
+    {{ end }}
+  </ul>
+</section>
+
+{{ partial "footer.html" . }}
+
